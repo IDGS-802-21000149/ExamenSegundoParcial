@@ -1,0 +1,38 @@
+<h1 class="text-center my-4">Nuestros Productos</h1>
+<hr>
+
+<div class="m-5">
+    <div class="d-flex justify-content-center my-4">
+        <input type="text" class="form-control w-50" placeholder="Buscar productos..." [(ngModel)]="terminoBusqueda" (input)="filtrarProductos()">
+    </div>
+
+    <div class="btn-group d-flex justify-content-center my-4" role="group">
+        <h1>Filtros</h1>
+        <hr>
+        <button type="button" class="btn btn-outline-dark mx-2" (click)="mostrarCategoria('CAT0')">Todos los productos</button>
+        <button type="button" class="btn btn-outline-primary mx-2" (click)="mostrarCategoria('CAT1')">Categoria 1</button>
+        <button type="button" class="btn btn-outline-primary mx-2" (click)="mostrarCategoria('CAT2')">Categoria 2</button>
+        <button type="button" class="btn btn-outline-primary mx-2" (click)="mostrarCategoria('CAT3')">Categoria 3</button>
+    </div>
+    <hr>
+
+    <div *ngIf="productosFiltrados.length === 0">
+        <h2 class="text-center">No se encontraron productos</h2>
+    </div>
+
+    <div *ngIf="productosFiltrados.length > 0">
+        <h2 class="text-center">{{ categoriaActual === 'CAT0' ? 'Todos los productos' : 'Categoria ' + categoriaActual.charAt(3) }}</h2>
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 mb-4" *ngFor="let p of productosFiltrados">
+                <div class="card h-100">
+                    <img src="{{ p.imagen }}" class="card-img-top" />
+                    <div class="card-body">
+                        <h5 class="card-title">{{p.nombre}}</h5>
+                        <p class="card-text">{{p.descripcion}}</p>
+                        <a href="#" class="btn btn-success">Ver más</a>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
